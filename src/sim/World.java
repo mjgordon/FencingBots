@@ -19,6 +19,7 @@ import nn.NNGenome;
 import org.ode4j.ode.OdeConstants;
 
 import processing.core.PGraphics;
+import processing.core.PVector;
 
 public class World {
 	public Ground ground;
@@ -86,6 +87,20 @@ public class World {
 		if (botB.nn.currentValues[0][0] > 1) {
 			scoreA = 1;
 		}
+		
+		// Check for facing away
+		double facingA = Math.abs(botA.transform(botB.partBase.getPosition()).heading() / Math.PI);
+		double facingB = Math.abs(botB.transform(botA.partBase.getPosition()).heading() / Math.PI);
+		
+		//System.out.println(facingA + " : " + facingB);
+		double maxAngle = 0.95;
+		if (facingA > maxAngle) {
+			scoreB = 1;
+		}
+		if (facingB > maxAngle) {
+			scoreA = 1;
+		}
+		
 		
 		// Match ending conditions
 

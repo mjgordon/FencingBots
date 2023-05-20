@@ -265,11 +265,6 @@ public class EvolutionEnvironment {
 				d[j] = Double.valueOf(parts[j]);
 			}
 			
-			//d = arrayInsert(d, getZeros(9),710);
-			//d = arrayInsert(d, getZeros(10),620);
-			//d = arrayInsert(d, getZeros(10),520);
-			//d = arrayInsert(d, getZeros(10),420);
-			
 			genomes[i] = new NNGenome(d);
 			if (mutate) {
 				genomes[i] = genomes[i].mutate();
@@ -279,10 +274,11 @@ public class EvolutionEnvironment {
 	
 	
 	/**
-	 * Helper for fixing NN sizes when loading from file
+	 * Helper for fixing genome when loading from a file with a different config
 	 * @param size
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private static double[] getZeros(int size) {
 		double[] output = new double[size];
 		for (int i = 0; i < size; i++) {
@@ -293,12 +289,13 @@ public class EvolutionEnvironment {
 	
 	
 	/**
-	 * Helper for fixing NN sizes when loading from file
+	 * Helper for fixing genome when loading from a file with a different config
 	 * @param arrayMain
 	 * @param arrayAdd
 	 * @param position
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private static double[] arrayInsert(double[] arrayMain, double arrayAdd[], int position) {
 		double[] output = new double[arrayMain.length + arrayAdd.length];
 		

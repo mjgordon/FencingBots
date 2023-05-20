@@ -60,7 +60,7 @@ public class Bot {
 
 		partBase = new Part(dWorld, dSpace, 0.8, 0.8, 0.125, 0, 0, 0, rotation, offset, 1, false);
 		partTorso = new Part(dWorld, dSpace, 0.25, 0.25, 2, 0, 0, 1.02, rotation, offset, 1, false);
-		partHead = new Part(dWorld, dSpace, 0.3, 0.3, 0.6, 0, 0, 2.3, rotation, offset, 1, false);
+		partHead = new Part(dWorld, dSpace, 0.3, 0.3, 0.6, 0, 0, 2.3, rotation, offset, 1, true);
 		partArm = new Part(dWorld, dSpace, 1, 0.1, 0.1, 0.5, 0, 1.8, rotation, offset, 1, true);
 		partBlade = new Part(dWorld, dSpace, 1, 0.1, 0.1, 1.5, 0, 1.8, rotation, offset, 0.1, true);
 
@@ -200,6 +200,15 @@ public class Bot {
 		}
 		g.popMatrix();
 
+	}
+	
+	public PVector transform(PVector external) {
+		PMatrix3D inverter = Util.pmFromOM(partTorso.body.getRotation(), partTorso.body.getPosition());
+		inverter.invert();
+		
+		PVector output = inverter.mult(external, new PVector());
+		
+		return output;
 	}
 
 

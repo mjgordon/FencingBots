@@ -18,8 +18,8 @@ public class FencingBotsSim extends PApplet {
 
 	private EvolutionEnvironment evolutionEnvironment;
 	
-	private static final int TICKS = 10;
-	private static final boolean DRAW_SIM = false;
+	private static int TICKS = 20;
+	private static boolean DRAW_SIM = true;
 
 
 	public void settings() {
@@ -71,6 +71,22 @@ public class FencingBotsSim extends PApplet {
 
 	public void stop() {
 		OdeHelper.closeODE();
+	}
+	
+	public void keyPressed() {
+		if (key == 'd') {
+			DRAW_SIM = ! DRAW_SIM;
+		}
+		
+		if (key == 's') {
+			if (TICKS == 20) {
+				TICKS = 1;
+			}
+			else if (TICKS == 1) {
+				TICKS = 20;
+			}
+		}
+		
 	}
 
 
